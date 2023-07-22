@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.profile.ProfileFragment">
-    
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_profile"
         android:layout_width="160dp"
@@ -15,7 +15,7 @@
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
         app:cardCornerRadius="80dp">
-        
+
         <ImageView
             android:id="@+id/img_profile"
             android:layout_width="match_parent"
