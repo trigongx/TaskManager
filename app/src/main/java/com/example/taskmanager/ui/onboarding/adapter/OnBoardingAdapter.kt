@@ -3,19 +3,20 @@ package com.example.taskmanager.ui.onboarding.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.example.taskmanager.R
 import com.example.taskmanager.databinding.ItemOnboardingBinding
 import com.example.taskmanager.model.OnBoarding
 
 class OnBoardingAdapter(private val onClick:() -> Unit): Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
 
     private val data = arrayListOf<OnBoarding>(
-        OnBoarding("Много возможностей","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","https://images.ctfassets.net/spoqsaf9291f/2HM5BPlsww5fF5gJDpI71B/94b7676aa48c86aa4d3fe90583812b4a/New_to_Notion_-_Chapter_Hero.png"),
-        OnBoarding("Всегда рядом","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","https://cdn.wallpapersafari.com/37/54/u6EoIC.png"),
-        OnBoarding("Удобное пользование","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","https://logowik.com/content/uploads/images/notion1411.jpg")
+        OnBoarding("Много возможностей","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            R.drawable.img_1_onboarding),
+        OnBoarding("Всегда рядом","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",R.drawable.img_2_onboarding),
+        OnBoarding("Удобное пользование","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",R.drawable.img_3_onboarding)
     )
 
 
