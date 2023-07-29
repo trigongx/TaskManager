@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
@@ -14,15 +15,13 @@ import com.example.taskmanager.R
 
 import com.example.taskmanager.databinding.FragmentHomeBinding
 import com.example.taskmanager.model.Task
-import com.example.taskmanager.ui.task.TaskFragment.Companion.RESULT_KEY
-import com.example.taskmanager.ui.task.TaskFragment.Companion.RESULT_REQUEST_KEY
 import com.example.taskmanager.ui.task.adapter.TaskAdapter
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
-    private val adapter = TaskAdapter(this::onLongClickItem)
+    private val adapter = TaskAdapter(this::onLongClickItem, this::onClick)
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -34,7 +33,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvTask.layoutManager = GridLayoutManager(requireContext(),2)
+        binding.rvTask.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvTask.adapter = adapter
 
         val data = App.db.taskDao().getAll()
@@ -54,16 +53,23 @@ class HomeFragment : Fragment() {
         alertDialog.setTitle(getString(R.string.delete_task))
             .setMessage(getString(R.string.are_you_sure_you_want_to_delete_this_task))
             .setCancelable(true)
-            .setPositiveButton("Yes") {
-                dialog,show ->
+            .setPositiveButton(getString(R.string.yes)) { dialog, show ->
                 App.db.taskDao().delete(task)
-                val allTasks =  App.db.taskDao().getAll()
+                val allTasks = App.db.taskDao().getAll()
                 adapter.addTasks(allTasks)
             }
-            .setNegativeButton(getString(R.string.no)){
-                dialog,show ->
+            .setNegativeButton(getString(R.string.no)) { dialog, show ->
             }.show()
 
 
+    }
+
+    private fun onClick(task: Task) {
+        findNavController().navigate(R.id.taskFragment, bundleOf(TASK_KEY to task))
+    }
+
+
+    companion object{
+        const val TASK_KEY = "task.key"
     }
 }

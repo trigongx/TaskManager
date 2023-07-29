@@ -37,7 +37,7 @@ class ProfileFragment : Fragment() {
             pref.saveName(binding.etName.text.toString())
         }
 
-        if (pref.getImage()?.isEmpty() == true){
+        if (pref.getImage()?.isNotEmpty() == true){
             pref.getImage()?.let { binding.imgProfile.loadImage(it)}
         }
 
