@@ -8,10 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
-import com.example.taskmanager.R
 import com.example.taskmanager.data.local.Pref
 import com.example.taskmanager.databinding.FragmentProfileBinding
-import com.example.taskmanager.ext.loadImage
+import com.example.taskmanager.utils.loadImage
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 
@@ -38,7 +37,7 @@ class ProfileFragment : Fragment() {
             pref.saveName(binding.etName.text.toString())
         }
 
-        if (pref.getImage()!!.length > 0){
+        if (pref.getImage()?.isEmpty() == true){
             pref.getImage()?.let { binding.imgProfile.loadImage(it)}
         }
 

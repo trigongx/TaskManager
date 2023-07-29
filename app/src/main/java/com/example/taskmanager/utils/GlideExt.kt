@@ -1,4 +1,4 @@
-package com.example.taskmanager.ext
+package com.example.taskmanager.utils
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

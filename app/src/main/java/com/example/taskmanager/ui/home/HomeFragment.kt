@@ -51,8 +51,8 @@ class HomeFragment : Fragment() {
 
     private fun showTaskDeleteDialog(task: Task) {
         val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("Delete task?")
-            .setMessage("Are you sure you want to delete this task?")
+        alertDialog.setTitle(getString(R.string.delete_task))
+            .setMessage(getString(R.string.are_you_sure_you_want_to_delete_this_task))
             .setCancelable(true)
             .setPositiveButton("Yes") {
                 dialog,show ->
@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
                 val allTasks =  App.db.taskDao().getAll()
                 adapter.addTasks(allTasks)
             }
-            .setNegativeButton("No"){
+            .setNegativeButton(getString(R.string.no)){
                 dialog,show ->
             }.show()
 
