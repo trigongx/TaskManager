@@ -29,11 +29,15 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
-        task = arguments?.getSerializable(TASK_KEY) as Task
+        task = arguments?.getSerializable(TASK_KEY) as? Task
         if (task != null) {
             etTaskTitle.setText(task?.title.toString())
             etTaskDesc.setText(task?.desc.toString())
             btnSave.text = getString(R.string.update)
+        } else {
+            etTaskTitle.setText("")
+            etTaskDesc.setText("")
+            btnSave.text = getString(R.string.save)
         }
 
         btnSave.setOnClickListener {
@@ -45,8 +49,6 @@ class TaskFragment : Fragment() {
 
             findNavController().navigateUp()
         }
-
-
     }
 
     private fun updateTask() {

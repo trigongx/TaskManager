@@ -36,8 +36,7 @@ class HomeFragment : Fragment() {
         binding.rvTask.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvTask.adapter = adapter
 
-        val data = App.db.taskDao().getAll()
-        adapter.addTasks(data)
+        loadAllData()
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.taskFragment)
@@ -55,8 +54,7 @@ class HomeFragment : Fragment() {
             .setCancelable(true)
             .setPositiveButton(getString(R.string.yes)) { dialog, show ->
                 App.db.taskDao().delete(task)
-                val allTasks = App.db.taskDao().getAll()
-                adapter.addTasks(allTasks)
+                loadAllData()
             }
             .setNegativeButton(getString(R.string.no)) { dialog, show ->
             }.show()
@@ -68,6 +66,10 @@ class HomeFragment : Fragment() {
         findNavController().navigate(R.id.taskFragment, bundleOf(TASK_KEY to task))
     }
 
+    private fun loadAllData(){
+        val data = App.db.taskDao().getAll()
+        adapter.addTasks(data)
+    }
 
     companion object{
         const val TASK_KEY = "task.key"
