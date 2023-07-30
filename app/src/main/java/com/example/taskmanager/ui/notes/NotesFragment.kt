@@ -1,4 +1,4 @@
-package com.example.taskmanager.ui.home
+package com.example.taskmanager.ui.notes
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -7,19 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.taskmanager.App
 import com.example.taskmanager.R
 
-import com.example.taskmanager.databinding.FragmentHomeBinding
+import com.example.taskmanager.databinding.FragmentNotesBinding
 import com.example.taskmanager.model.Task
 import com.example.taskmanager.ui.task.adapter.TaskAdapter
 
-class HomeFragment : Fragment() {
+class NotesFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentNotesBinding? = null
 
     private val adapter = TaskAdapter(this::onLongClickItem, this::onClick)
     private val binding get() = _binding!!
@@ -27,18 +25,15 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentNotesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvTask.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvTask.adapter = adapter
-
         loadAllData()
-
-        binding.fab.setOnClickListener {
+        binding.btnCreateNote.setOnClickListener {
             findNavController().navigate(R.id.taskFragment)
         }
     }

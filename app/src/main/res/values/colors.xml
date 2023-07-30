@@ -12,5 +12,9 @@
     <color name="light_grey">#F6F6F6</color>
     <color name="blue_black">#1A1D27</color>
     <color name="orange">#FF5722</color>
+    <color name="yellow">#FFBF00</color>
+    <color name="haki">#78866b</color>
+    <color name="green">#004524</color>
+    <color name="red">#FF0000</color>
 
 </resources>

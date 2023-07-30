@@ -5,14 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.App
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentTaskBinding
 import com.example.taskmanager.model.Task
-import com.example.taskmanager.ui.home.HomeFragment.Companion.TASK_KEY
+import com.example.taskmanager.ui.notes.NotesFragment.Companion.TASK_KEY
 
 class TaskFragment : Fragment() {
 

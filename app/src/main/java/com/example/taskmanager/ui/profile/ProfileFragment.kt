@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import com.example.taskmanager.R
 import com.example.taskmanager.data.local.Pref
 import com.example.taskmanager.databinding.FragmentProfileBinding
 import com.example.taskmanager.utils.loadImage
@@ -16,7 +17,7 @@ import com.theartofdev.edmodo.cropper.CropImageView
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var binding:FragmentProfileBinding
+    private lateinit var binding: FragmentProfileBinding
     private val pref: Pref by lazy {
         Pref(requireContext())
     }
@@ -25,7 +26,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProfileBinding.inflate(inflater,container,false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -35,31 +36,40 @@ class ProfileFragment : Fragment() {
 
         binding.etName.addTextChangedListener {
             pref.saveName(binding.etName.text.toString())
+            if (binding.etName.text?.isEmpty() == true){
+                binding.ltName.error = getString(R.string.this_field_must_be_filled)
+            } else {
+                binding.ltName.error = null
+            }
         }
 
-        if (pref.getImage()?.isNotEmpty() == true){
-            pref.getImage()?.let { binding.imgProfile.loadImage(it)}
+        if (pref.getImage()?.isNotEmpty() == true) {
+            pref.getImage()?.let { binding.imgProfile.loadImage(it) }
         }
 
         binding.imgProfile.setOnClickListener {
             doCircleAvatar()
         }
 
-        }
-    private fun doCircleAvatar(){
+    }
+
+
+    private fun doCircleAvatar() {
         CropImage.activity()
-            .setAspectRatio(1,1)
-            .setRequestedSize(1080,1080)
+            .setAspectRatio(1, 1)
+            .setRequestedSize(1080, 1080)
             .setCropShape(CropImageView.CropShape.OVAL)
-            .start(requireActivity(),this)
+            .start(requireActivity(), this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode ==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null){
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val resultUri = CropImage.getActivityResult(data).uri
             pref.saveImage(resultUri.toString())
             pref.getImage()?.let { binding.imgProfile.loadImage(it) }
         }
     }
-    }
+
+
+}
