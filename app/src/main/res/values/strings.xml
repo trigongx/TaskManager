@@ -16,5 +16,5 @@
     <string name="yes">Yes</string>
     <string name="update">Update</string>
     <string name="this_field_must_be_filled">Это поле должно быть заполнено</string>
-    <string name="required">Required*</string>
+    <string name="required">Required</string>
 </resources>

@@ -36,11 +36,6 @@ class ProfileFragment : Fragment() {
 
         binding.etName.addTextChangedListener {
             pref.saveName(binding.etName.text.toString())
-            if (binding.etName.text?.isEmpty() == true){
-                binding.ltName.error = getString(R.string.this_field_must_be_filled)
-            } else {
-                binding.ltName.error = null
-            }
         }
 
         if (pref.getImage()?.isNotEmpty() == true) {

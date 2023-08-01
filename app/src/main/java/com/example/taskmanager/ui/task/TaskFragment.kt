@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.App
 import com.example.taskmanager.R
@@ -27,21 +28,34 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
+        etTaskTitle.doOnTextChanged { text, _, _, _ ->
+            if(text.isNullOrEmpty()){
+                titleContainer.error = getString(R.string.this_field_must_be_filled)
+            } else{
+                titleContainer.error = null
+            }
+        }
+
         task = arguments?.getSerializable(TASK_KEY) as? Task
         if (task != null) {
             etTaskTitle.setText(task?.title.toString())
             etTaskDesc.setText(task?.desc.toString())
             btnSave.text = getString(R.string.update)
-        } else {
-            etTaskTitle.setText("")
-            etTaskDesc.setText("")
-            btnSave.text = getString(R.string.save)
         }
 
         btnSave.setOnClickListener {
-            if (task == null) {
-                saveTask()
+
+            val titleText = etTaskTitle.text?.toString()?.trim()
+            if (titleText.isNullOrEmpty()) {
+                titleContainer.error = getString(R.string.this_field_must_be_filled)
+                return@setOnClickListener
             } else {
+                titleContainer.error = null
+            }
+
+            if (task == null && etTaskTitle.text?.isNotEmpty() == true) {
+                saveTask()
+            } else if (etTaskTitle.text?.isNotEmpty() == true) {
                 updateTask()
             }
 
@@ -49,13 +63,16 @@ class TaskFragment : Fragment() {
         }
     }
 
+
     private fun updateTask() {
         val data = task?.copy(
             title = binding.etTaskTitle.text.toString(),
             desc = binding.etTaskDesc.text.toString()
         )
-        if (data != null) {
+        if (data != null && data.title?.isNotEmpty() == true) {
             App.db.taskDao().update(data)
+        } else {
+
         }
     }
 

@@ -2,17 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent"
+
     tools:context=".ui.task.TaskFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldTitle"
+        android:id="@+id/titleContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
         android:hint="@string/title"
+
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         
         <com.google.android.material.textfield.TextInputEditText
@@ -26,7 +31,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldDesc"
+        android:id="@+id/descContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
