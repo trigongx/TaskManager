@@ -49,10 +49,7 @@ class TaskFragment : Fragment() {
             if (titleText.isNullOrEmpty()) {
                 titleContainer.error = getString(R.string.this_field_must_be_filled)
                 return@setOnClickListener
-            } else {
-                titleContainer.error = null
             }
-
             if (task == null && etTaskTitle.text?.isNotEmpty() == true) {
                 saveTask()
             } else if (etTaskTitle.text?.isNotEmpty() == true) {

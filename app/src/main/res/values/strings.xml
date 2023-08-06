@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TaskManager</string>
+    <string name="app_name">Task Manager</string>
     <string name="title_notes">Notes</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -15,6 +15,16 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="update">Update</string>
-    <string name="this_field_must_be_filled">Это поле должно быть заполнено</string>
+    <string name="this_field_must_be_filled">This field must be filled</string>
     <string name="required">Required</string>
+    <string name="phone_number">Phone number</string>
+    <string name="send_code">Send code</string>
+    <string name="accept">Accept</string>
+    <string name="code">Code</string>
+    <string name="any_error">Something went wrong</string>
+    <string name="code_kg">+996</string>
+    <string name="email">Email</string>
+    <string name="task">Task</string>
+    <string name="manager">Manager</string>
+    <string name="exit">Exit</string>
 </resources>
