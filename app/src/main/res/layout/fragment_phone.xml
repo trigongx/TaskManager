@@ -17,18 +17,16 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="16dp"
         app:prefixText="@string/code_kg"
-        app:prefixTextColor="@color/grey"
         app:errorEnabled="true"
         app:errorIconDrawable="@drawable/ic_error"
         android:hint="@string/phone_number"
-
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="numberSigned"
             android:imeOptions="actionDone"
             />
 

@@ -9,7 +9,6 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentPhoneBinding
-import com.example.taskmanager.databinding.FragmentProfileBinding
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -52,9 +51,11 @@ class PhoneFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.btnSend.setOnClickListener {
+            val phone = binding.phoneContainer.prefixText.toString() + binding.etPhone.text.toString()
             val options = PhoneAuthOptions.newBuilder(auth)
-                .setPhoneNumber(binding.etPhone.text.toString()) // Phone number to verify
+                .setPhoneNumber(phone) // Phone number to verify
                 .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                 .setActivity(requireActivity()) // Activity (for callback binding)
                 .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks

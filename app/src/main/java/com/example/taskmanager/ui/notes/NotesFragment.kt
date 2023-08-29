@@ -35,31 +35,33 @@ class NotesFragment : Fragment() {
         binding.rvTask.adapter = adapter
         loadAllData()
         binding.btnCreateNote.setOnClickListener {
-            findNavController().navigate(R.id.taskFragment)
+            findNavController().navigate(R.id.addTaskFragment)
         }
     }
 
     private fun onLongClickItem(task: Task) {
-        showTaskDeleteDialog(task)
+        showDialog(task)
     }
 
-    private fun showTaskDeleteDialog(task: Task) {
-        val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle(getString(R.string.delete_task))
-            .setMessage(getString(R.string.are_you_sure_you_want_to_delete_this_task))
+    private fun showDialog(task: Task){
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setTitle(task.title)
+            .setMessage("Вы уверены что хотите удалить эту задачу")
             .setCancelable(true)
-            .setPositiveButton(getString(R.string.yes)) { dialog, show ->
+            .setPositiveButton("Да") { _, _ ->
                 App.db.taskDao().delete(task)
-                loadAllData()
+                val data = App.db.taskDao().getAll()
+                adapter.addTasks(data)
             }
-            .setNegativeButton(getString(R.string.no)) { dialog, show ->
-            }.show()
-
+            .setNegativeButton("Нет"){_,_ ->
+            }
+            .show()
 
     }
+    
 
     private fun onClick(task: Task) {
-        findNavController().navigate(R.id.taskFragment, bundleOf(TASK_KEY to task))
+        findNavController().navigate(R.id.addTaskFragment, bundleOf(TASK_KEY to task))
     }
 
     private fun loadAllData(){

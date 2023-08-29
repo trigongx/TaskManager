@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_notes" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.taskmanager.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_books"
+        android:name="com.example.taskmanager.ui.books.BooksFragment"
+        android:label="@string/title_books"
+        tools:layout="@layout/fragment_books" />
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -30,10 +30,10 @@
         tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/taskFragment"
-        android:name="com.example.taskmanager.ui.task.TaskFragment"
+        android:id="@+id/addTaskFragment"
+        android:name="com.example.taskmanager.ui.task.AddTaskFragment"
         android:label="Task"
-        tools:layout="@layout/fragment_task" />
+        tools:layout="@layout/fragment_add_task" />
     <fragment
         android:id="@+id/onBoardingFragment"
         android:name="com.example.taskmanager.ui.onboarding.OnBoardingFragment"
@@ -54,4 +54,9 @@
         android:name="com.example.taskmanager.ui.auth.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" />
+    <fragment
+        android:id="@+id/addBookFragment"
+        android:name="com.example.taskmanager.ui.book.AddBookFragment"
+        android:label="Book"
+        tools:layout="@layout/fragment_add_book" />
 </navigation>

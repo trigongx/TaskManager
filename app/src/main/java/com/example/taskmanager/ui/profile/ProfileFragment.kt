@@ -34,26 +34,13 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        setHasOptionsMenu(true)
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.top_menu,menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.sign_out){
-            auth.signOut()
-            findNavController().navigate(R.id.authFragment)
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initListeners()
         binding.etName.setText(pref.getName())
 
         binding.etName.addTextChangedListener {
@@ -64,10 +51,19 @@ class ProfileFragment : Fragment() {
             pref.getImage()?.let { binding.imgProfile.loadImage(it) }
         }
 
+
+
+    }
+
+    private fun initListeners(){
         binding.imgProfile.setOnClickListener {
             doCircleAvatar()
         }
 
+        binding.btnExit.setOnClickListener {
+            auth.signOut()
+            findNavController().navigate(R.id.authFragment)
+        }
     }
 
 

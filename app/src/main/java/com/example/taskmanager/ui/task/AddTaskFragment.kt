@@ -5,24 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.App
 import com.example.taskmanager.R
-import com.example.taskmanager.databinding.FragmentTaskBinding
+import com.example.taskmanager.databinding.FragmentAddTaskBinding
 import com.example.taskmanager.model.Task
 import com.example.taskmanager.ui.notes.NotesFragment.Companion.TASK_KEY
 
-class TaskFragment : Fragment() {
+class AddTaskFragment : Fragment() {
 
-    private lateinit var binding: FragmentTaskBinding
+    private lateinit var binding: FragmentAddTaskBinding
     private var task: Task? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentTaskBinding.inflate(inflater, container, false)
+        binding = FragmentAddTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,7 +43,11 @@ class TaskFragment : Fragment() {
             etTaskDesc.setText(task?.desc.toString())
             btnSave.text = getString(R.string.update)
         }
+        initListener()
 
+    }
+
+    private fun FragmentAddTaskBinding.initListener() {
         btnSave.setOnClickListener {
 
             val titleText = etTaskTitle.text?.toString()?.trim()

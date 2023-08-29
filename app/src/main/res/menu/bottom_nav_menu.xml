@@ -7,9 +7,9 @@
         android:title="@string/title_notes" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_books"
         android:icon="@drawable/ic_book"
-        android:title="@string/title_dashboard" />
+        android:title="@string/title_books" />
 
     <item
         android:id="@+id/navigation_notifications"

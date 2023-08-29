@@ -45,7 +45,7 @@ class TaskAdapter(
             tvTaskTitle.text = task.title
             tvTaskDesc.text = task.desc
 
-            changeItemColor()
+
 
             itemView.setOnLongClickListener {
                 onLongClickItem(task)
